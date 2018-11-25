@@ -3,6 +3,7 @@
     <div class="row">
       <div class="col-lg-6 offset-lg-3">
         <h3>Log in</h3>
+        <small class="text-muted">If you were redirected to this page after signing up, your account was created successfully.<br>Please log in.</small>
         <hr>
         <form>
           <transition name="fade" mode="out-in">
@@ -48,7 +49,10 @@
       login() {
         if (this.loginData.username && this.loginData.password) {
           this.$store.dispatch('loginAction', this.loginData)
-            .then(response => this.$router.push('/profile'))
+            .then(response => {
+              this.$store.dispatch('persistAuthData', response.payload.token );
+              this.$router.push('/profile');
+            })
             .catch(err => this.setError(err));
         } else {
           this.setError('A username and password is required.');

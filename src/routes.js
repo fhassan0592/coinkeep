@@ -5,6 +5,9 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Profile from './components/Profile';
 
+import { store } from './store';
+
+
 Vue.use(VueRouter);
 
 const routes = [

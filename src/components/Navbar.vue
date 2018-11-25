@@ -14,14 +14,15 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <router-link to="/login" tag="a" class="nav-link" exact>
+            <router-link to="/login" tag="a" class="nav-link" exact v-if="!isAuthenticated">
                 Login
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/signup" tag="a" class="nav-link" exact>
+            <router-link to="/signup" tag="a" class="nav-link" exact v-if="!isAuthenticated">
                 Signup
             </router-link>
+            <button class="btn btn-secondary btn-sm" @click.prevent="logout" v-else>Logout</button>
           </li>
         </ul>
       </div>
@@ -37,6 +38,17 @@ import brand from '../assets/img/bank.png';
           return {
               brand
           }
+      },
+      computed: {
+        isAuthenticated() {
+          return this.$store.getters.tokenGetter;
+        }
+      },
+      methods: {
+        logout() {
+          this.$store.dispatch('destroyAuthData')
+          .then(res => this.$router.replace('/login'));
+        }
       }
   }
 </script>
