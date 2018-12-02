@@ -1,7 +1,12 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-      <router-link to="/" tag="a" class="navbar-brand" exact>
+      <router-link to="/profile" tag="a" class="navbar-brand" exact v-if="isAuthenticated">
+          <span class="text-muted">Coin</span>
+          <img :src="brand" width="30" height="30">
+          <span class="text-muted">Keep</span>
+      </router-link>
+      <router-link to="/" tag="a" class="navbar-brand" exact v-else>
           <span class="text-muted">Coin</span>
           <img :src="brand" width="30" height="30">
           <span class="text-muted">Keep</span>

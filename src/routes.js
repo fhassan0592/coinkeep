@@ -4,6 +4,9 @@ import VueRouter from 'vue-router';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Profile from './components/Profile';
+import Main from './components/Main';
+import CatchAll from './components/CatchAll';
+import EditCoin from './components/Card/EditCoin';
 
 import { store } from './store';
 
@@ -22,6 +25,18 @@ const routes = [
     {
         path: '/profile',
         component: Profile
+    },
+    {
+        path: '/',
+        component: Main
+    },
+    {
+        path: '/coin/:id',
+        component: EditCoin
+    },
+    {
+        path: '*',
+        component: CatchAll
     }
 ];
 
